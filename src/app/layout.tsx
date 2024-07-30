@@ -5,7 +5,22 @@ import {VERCEL_ENV} from "../next.constants";
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Analytics } from '@vercel/analytics/react';
 
+import  cn  from '@/lib/utils/cn'
+
 const inter = Inter({ subsets: ["latin"] });
+
+
+const fontHeading = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-heading',
+})
+
+const fontBody = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-body',
+})
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -19,7 +34,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body  className={cn(
+          'antialiased',
+          fontHeading.variable,
+          fontBody.variable
+        )}>
+          {children}
+      </body>
       {VERCEL_ENV && (
           <>
             <Analytics />
